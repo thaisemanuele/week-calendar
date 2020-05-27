@@ -5,6 +5,10 @@ import moment from "moment";
 import "./homepage.styles.scss";
 import CalendarWeek from "../../components/calendar-week/calendarWeek.component";
 
+import IconButton from "@material-ui/core/IconButton";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+
 import { fetchHolidays } from "../../redux/store/actions/holidays";
 import { setDays } from "../../redux/store/actions/days";
 
@@ -12,6 +16,7 @@ import { createDays } from "../../utils/days.utils";
 
 const HomePage = (props) => {
   const [startDate, setStarDate] = useState(moment().format("YYYY-MM-DD"));
+  const [daysToDisplay, setDaysToDisplay] = useState(7);
 
   const { initHolidays, setDays } = props;
 
@@ -20,12 +25,30 @@ const HomePage = (props) => {
   }, [initHolidays]);
 
   useEffect(() => {
-    setDays(createDays(startDate));
+    setDays(createDays(startDate, daysToDisplay));
   }, [startDate]);
 
   return (
     <div className="homepage">
-      <CalendarWeek />
+      <div className="calendar">
+        <IconButton
+          classes={{
+            root: "next-icon",
+          }}
+          onClick={() => setStarDate(moment(startDate).add(-7, "days"))}
+        >
+          <NavigateBeforeIcon />
+        </IconButton>
+        <CalendarWeek />
+        <IconButton
+          classes={{
+            root: "next-icon",
+          }}
+          onClick={() => setStarDate(moment(startDate).add(7, "days"))}
+        >
+          <NavigateNextIcon />
+        </IconButton>
+      </div>
     </div>
   );
 };

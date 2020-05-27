@@ -1,9 +1,9 @@
 import moment from "moment";
 
-export const createDays = (startDate) => {
+export const createDays = (startDate, numDays) => {
   const days = [];
   const firstDate = moment(startDate);
-  const lastDate = moment(firstDate).add(27, "days");
+  const lastDate = moment(firstDate).add(numDays - 1, "days");
   let currentDate = firstDate;
   while (currentDate <= lastDate) {
     const newDay = {
