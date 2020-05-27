@@ -7,10 +7,10 @@ import CalendarWeek from "../../components/calendar-week/calendarWeek.component"
 import { fetchHolidays } from "../../store/actions/holidays";
 
 const HomePage = (props) => {
+  const { initHolidays } = props;
   useEffect(() => {
-    const { initHolidays } = props;
     initHolidays();
-  }, [props]);
+  }, [initHolidays]);
 
   return (
     <div className="homepage">
