@@ -1,6 +1,6 @@
 import * as actionTypes from "../../store/actions/actionTypes";
 const INITIAL_STATE = {
-  holidays: [],
+  dates: [],
 };
 
 const fetchHolidaysStart = (state, action) => {
@@ -11,13 +11,10 @@ const fetchHolidaysStart = (state, action) => {
 };
 
 const fetchHolidaysSuccess = (state, action) => {
-  const holidays = {
-    ...action.payload,
-  };
   return {
     ...state,
     loading: false,
-    holidays: holidays,
+    dates: action.payload,
   };
 };
 

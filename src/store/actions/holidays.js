@@ -32,11 +32,9 @@ export const fetchHolidays = (startDate, endDate) => {
     axios
       .post("holidays", requestHeaders)
       .then((res) => {
-        const fetchedHolidays = [];
+        let fetchedHolidays = [];
         if (!res.data.error) {
-          fetchedHolidays.push({
-            ...res.data.holidays,
-          });
+          fetchedHolidays = buildHolidays(res.data.holidays);
         }
         dispatch(fetchHolidaysSuccess(fetchedHolidays));
       })
@@ -45,3 +43,13 @@ export const fetchHolidays = (startDate, endDate) => {
       });
   };
 };
+
+function buildHolidays(data) {
+  const fetchedHolidays = [];
+  Object.keys(data).forEach((key) => {
+    for (let day of data[key]) {
+      fetchedHolidays.push(Object.assign(day, { date: key }));
+    }
+  });
+  return fetchedHolidays;
+}
