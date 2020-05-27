@@ -2,30 +2,39 @@ import React from "react";
 import { connect } from "react-redux";
 
 import "./calendarWeek.styles.scss";
-import Holiday from "../calendar-day/holiday.components";
+import Day from "../calendar-day/day.components";
 
-const CalendarWeek = ({ holidays }) => {
+import { checkHoliday, holidaysByDate } from "../../utils/days.utils";
+
+const CalendarWeek = ({ days, holidays }) => {
   return holidays.dates ? (
     <div className="week">
-      {holidays.dates.map((day) => {
+      {days.dates.map((day) => {
+        const isHoliday = checkHoliday(day, holidays.dates);
         return (
-          <Holiday
-            key={day.name}
-            name={day.name}
-            type={day.type}
+          <Day
+            key={day.date}
             date={day.date}
+            day={day.dayOfTheMonth}
+            month={day.month}
+            dayOfTheWeek={day.dayOfTheWeek}
+            isHoliday={isHoliday}
+            holidays={
+              isHoliday ? holidaysByDate(day.date, holidays.dates) : null
+            }
           />
         );
       })}
     </div>
   ) : (
-    <h1>day2</h1>
+    <h1>Something went wrong!</h1>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
     holidays: state.holidays,
+    days: state.days,
   };
 };
 
