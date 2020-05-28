@@ -1,11 +1,19 @@
 import React from "react";
 import "./holiday.styles.scss";
 
+import { Chip } from "@material-ui/core";
+import EventIcon from "@material-ui/icons/Event";
+
 const Holiday = ({ name, date, type }) => (
   <div className="holiday">
-    <span className="name">{name}</span>
-    <span className="date">{date}</span>
-    <span className="type">{type}</span>
+    <div className="name">{name}</div>
+    <Chip
+      variant="outlined"
+      color="secondary"
+      size="small"
+      icon={<EventIcon />}
+      label={type}
+    />
   </div>
 );
 

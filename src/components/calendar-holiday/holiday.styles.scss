@@ -6,4 +6,11 @@
   align-items: center;
   position: relative;
   background-color: #ece4e2;
+
+  .name {
+    padding: 10px;
+    overflow-wrap: anywhere;
+    color: #343e44;
+    font-size: medium;
+  }
 }
