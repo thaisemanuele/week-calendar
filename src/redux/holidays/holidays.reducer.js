@@ -1,12 +1,10 @@
 import * as actionTypes from "../store/actions/actionTypes";
-import moment from "moment";
-import { retrieveEndDate } from "../../utils/days.utils";
+import { retrieveEndDate, today } from "../../utils/days.utils";
 
-const DATE_FORMAT = "YYYY-MM-DD";
 const INITIAL_STATE = {
   dates: [],
-  startDate: moment().format(DATE_FORMAT),
-  endDate: retrieveEndDate(moment().format(DATE_FORMAT)),
+  startDate: today(),
+  endDate: retrieveEndDate(today()),
 };
 
 const fetchHolidaysStart = (state, action) => {

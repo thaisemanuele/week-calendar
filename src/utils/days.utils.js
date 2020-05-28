@@ -1,6 +1,8 @@
 import moment from "moment";
 
 const DATE_FORMAT = "YYYY-MM-DD";
+const WEEK_FORMAT = "dddd";
+const YEAR_FORMAT = "YYYY";
 
 export const createDays = (startDate, numDays) => {
   const days = [];
@@ -58,6 +60,19 @@ export const retrieveEndYear = (startDate, daysToDisplay) => {
   return moment(startDate).add(daysToDisplay, "days").format("YYYY");
 };
 
-export const retrieveEndDate = (startDate, daysToDisplay) => {
-  return moment(startDate).add(daysToDisplay, "days").format(DATE_FORMAT);
+export const addDays = (startDate, daysToAdd) => {
+  return moment(startDate).add(daysToAdd, "days").format(DATE_FORMAT);
+};
+
+export const retrieveEndDate = addDays;
+
+export const today = () => moment().format(DATE_FORMAT);
+export const currentYear = () => moment().format(YEAR_FORMAT);
+
+export const dayOfTheWeekAsString = (dateToFormat) => {
+  return moment(dateToFormat).format(WEEK_FORMAT);
+};
+
+export const dayOfTheWeekAsNumber = (dateToFormat) => {
+  return moment(dateToFormat).format("E");
 };

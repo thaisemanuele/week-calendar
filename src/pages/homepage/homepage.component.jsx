@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import moment from "moment";
-
 import "./homepage.styles.scss";
 import CalendarWeek from "../../components/calendar-week/calendarWeek.component";
 
@@ -13,27 +11,24 @@ import { fetchHolidays } from "../../redux/store/actions/holidays";
 import { setDays } from "../../redux/store/actions/days";
 
 import {
+  today,
   createDays,
   retrieveStartYear,
   retrieveEndYear,
   retrieveEndDate,
+  currentYear,
+  addDays,
 } from "../../utils/days.utils";
 
-const DATE_FORMAT = "YYYY-MM-DD";
+import FirstDaySelector from "../../components/first-day-selector/firstDaySelector.component";
 
 const HomePage = (props) => {
-  const [startDate, setStartDate] = useState(moment().format(DATE_FORMAT));
+  const [startDate, setStartDate] = useState(today());
   const [daysToDisplay] = useState(7);
 
-  const [startYear, setStartYear] = useState(moment().format("YYYY"));
+  const [startYear, setStartYear] = useState(currentYear());
   const [endYear, setEndYear] = useState(
     retrieveEndYear(startDate, daysToDisplay)
-  );
-  const [fetchHolidaysStart, setfetchHolidaysStart] = useState(
-    moment().format(DATE_FORMAT)
-  );
-  const [fetchHolidaysEnd, setfetchHolidaysEnd] = useState(
-    moment(startDate).add(28, "days").format(DATE_FORMAT)
   );
 
   const holidaysStartDate = props.holidays.startDate;
@@ -45,29 +40,39 @@ const HomePage = (props) => {
     setDays(createDays(startDate, daysToDisplay));
     setStartYear(retrieveStartYear(startDate));
     setEndYear(retrieveEndYear(startDate, daysToDisplay));
-    console.log(startDate, holidaysStartDate, startDate < holidaysStartDate);
 
     if (startDate < holidaysStartDate) {
       getHolidays(
-        moment(holidaysStartDate).subtract(28, "days").format(DATE_FORMAT),
+        addDays(holidaysStartDate, -28),
         holidaysStartDate,
         holidaysStartDate,
         props.holidays.dates
       );
     } else if (retrieveEndDate(startDate, daysToDisplay) > holidaysEndDate) {
       getHolidays(
-        moment(holidaysEndDate).add(1, "days").format(DATE_FORMAT),
-        moment(holidaysEndDate).add(28, "days").format(DATE_FORMAT),
+        addDays(holidaysEndDate, 1),
+        addDays(holidaysEndDate, 28),
         holidaysStartDate,
         props.holidays.dates
       );
     }
-  }, [setDays, setStartYear, setEndYear, startDate, daysToDisplay]);
+  }, [
+    setDays,
+    setStartYear,
+    setEndYear,
+    getHolidays,
+    startDate,
+    daysToDisplay,
+  ]);
 
   return (
     <div className="homepage">
       <div className="calendar-header">
         <div>{startYear}</div>
+        <FirstDaySelector
+          firstDay={startDate}
+          onFirstDayChanged={(newFirstday) => setStartDate(newFirstday)}
+        />
         {startYear !== endYear ? <div>{endYear}</div> : null}
       </div>
       <div className="calendar">
@@ -76,11 +81,7 @@ const HomePage = (props) => {
             classes={{
               root: "next-icon",
             }}
-            onClick={() =>
-              setStartDate(
-                moment(startDate).add(-7, "days").format(DATE_FORMAT)
-              )
-            }
+            onClick={() => setStartDate(addDays(startDate, -7))}
           >
             <NavigateBeforeIcon />
           </IconButton>
@@ -91,9 +92,7 @@ const HomePage = (props) => {
             classes={{
               root: "next-icon",
             }}
-            onClick={() =>
-              setStartDate(moment(startDate).add(7, "days").format(DATE_FORMAT))
-            }
+            onClick={() => setStartDate(addDays(startDate, 7))}
           >
             <NavigateNextIcon />
           </IconButton>
