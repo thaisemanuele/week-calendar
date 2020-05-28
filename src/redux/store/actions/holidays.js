@@ -23,7 +23,21 @@ const fetchHolidaysFailed = () => {
   };
 };
 
-export const fetchHolidays = (startDate, endDate) => {
+const setHolidaysStartDate = (startDate) => {
+  return {
+    type: actionTypes.SET_HOLIDAYS_START_DATE,
+    payload: startDate,
+  };
+};
+
+const setHolidaysEndDate = (endDate) => {
+  return {
+    type: actionTypes.SET_HOLIDAYS_END_DATE,
+    payload: endDate,
+  };
+};
+
+export const fetchHolidays = (startDate, endDate, insertBefore, holidays) => {
   return (dispatch) => {
     dispatch(fetchHolidaysStart());
     const requestHeaders = {
@@ -38,7 +52,13 @@ export const fetchHolidays = (startDate, endDate) => {
         if (!res.data.error) {
           fetchedHolidays = filterRepeated(buildHolidays(res.data.holidays));
         }
+        fetchedHolidays = insertBefore
+          ? [...fetchedHolidays, ...holidays]
+          : [...holidays, ...fetchedHolidays];
         dispatch(fetchHolidaysSuccess(fetchedHolidays));
+        insertBefore
+          ? dispatch(setHolidaysStartDate(startDate))
+          : dispatch(setHolidaysEndDate(endDate));
       })
       .catch((error) => {
         dispatch(fetchHolidaysFailed(error));

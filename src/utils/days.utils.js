@@ -1,5 +1,7 @@
 import moment from "moment";
 
+const DATE_FORMAT = "YYYY-MM-DD";
+
 export const createDays = (startDate, numDays) => {
   const days = [];
   const firstDate = moment(startDate);
@@ -7,7 +9,7 @@ export const createDays = (startDate, numDays) => {
   let currentDate = firstDate;
   while (currentDate <= lastDate) {
     const newDay = {
-      date: moment(currentDate).format("YYYY-MM-DD"),
+      date: moment(currentDate).format(DATE_FORMAT),
       dayOfTheMonth: moment(currentDate).date(),
       dayOfTheWeek: moment(currentDate).format("ddd"),
       month: moment(currentDate).format("MMM"),
@@ -46,4 +48,16 @@ export const checkHoliday = (day, holidays) => {
 
 export const holidaysByDate = (date, holidays) => {
   return holidays.filter((holiday) => holiday.date === date);
+};
+
+export const retrieveStartYear = (startDate) => {
+  return moment(startDate).format("YYYY");
+};
+
+export const retrieveEndYear = (startDate, daysToDisplay) => {
+  return moment(startDate).add(daysToDisplay, "days").format("YYYY");
+};
+
+export const retrieveEndDate = (startDate, daysToDisplay) => {
+  return moment(startDate).add(daysToDisplay, "days").format(DATE_FORMAT);
 };
