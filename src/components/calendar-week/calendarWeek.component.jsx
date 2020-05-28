@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import "./calendarWeek.styles.scss";
-import Day from "../calendar-day/day.components";
+import Day from "../calendar-day/day.component";
 
 import { checkHoliday, holidaysByDate } from "../../utils/days.utils";
 

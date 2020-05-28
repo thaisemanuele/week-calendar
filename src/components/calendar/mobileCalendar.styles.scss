@@ -1,0 +1,47 @@
+.mobile-calendar {
+  display: flex;
+
+  .week {
+    flex-direction: column;
+  }
+
+  .day {
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 10px;
+
+    .date-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+
+  .holidays {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    width: 79%;
+    flex-direction: row;
+  }
+
+  .holiday {
+    width: 50%;
+    height: 74px;
+    flex-direction: column;
+    overflow-y: overlay;
+  }
+
+  .day-week {
+    position: relative;
+    top: 0;
+  }
+
+  .date {
+    flex-direction: column;
+    width: 48px;
+    align-self: flex-start;
+    border-bottom: 1px solid cadetblue;
+    border-right: 1px solid cadetblue;
+  }
+}

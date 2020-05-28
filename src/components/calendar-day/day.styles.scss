@@ -2,10 +2,14 @@
   width: 14%;
   display: flex;
   flex-direction: column;
-  height: 150px;
+  height: 215px;
   align-items: center;
   position: relative;
   background-color: #f9f8f7;
+
+  .date-wrapper {
+    width: 100%;
+  }
 
   .date {
     width: 100%;
@@ -26,12 +30,19 @@
     width: 100%;
     color: steelblue;
     background-color: #e0dbe4;
+    border-top: #f9f8f7;
   }
 
   .day-week.holiday {
     width: 100%;
     color: #e23d3d;
     background-color: #e0dbe4;
-    height: auto;
+    height: 10px;
+  }
+
+  .holidays {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 }

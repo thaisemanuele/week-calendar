@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { connect } from "react-redux";
 import "./homepage.styles.scss";
-import CalendarWeek from "../../components/calendar-week/calendarWeek.component";
-
-import { IconButton, Tooltip } from "@material-ui/core";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import { Media } from "react-breakpoints";
 
 import { fetchHolidays } from "../../redux/store/actions/holidays";
 import { setDays } from "../../redux/store/actions/days";
@@ -20,7 +16,8 @@ import {
   addDays,
 } from "../../utils/days.utils";
 
-import FirstDaySelector from "../../components/first-day-selector/firstDaySelector.component";
+import Calendar from "../../components/calendar/calendar.component";
+import CalendarAppBar from "../../components/calendar-appbar/calendarAppbar.component";
 
 const HomePage = (props) => {
   const [startDate, setStartDate] = useState(today());
@@ -66,39 +63,28 @@ const HomePage = (props) => {
   ]);
 
   return (
-    <div className="homepage">
-      <div className="calendar-header">
-        <div>{startYear}</div>
-        <FirstDaySelector
-          firstDay={startDate}
-          onFirstDayChanged={(newFirstday) => setStartDate(newFirstday)}
-        />
-        {startYear !== endYear ? <div>{endYear}</div> : null}
+    <Fragment>
+      <CalendarAppBar />
+      <div className="homepage">
+        <Media>
+          {({ breakpoints, currentBreakpoint }) => {
+            const calendarClass =
+              breakpoints[currentBreakpoint] > breakpoints.mobileLandscape
+                ? "calendar"
+                : "mobile-calendar";
+            return (
+              <Calendar
+                startYear={startYear}
+                startDate={startDate}
+                setStartDate={setStartDate}
+                endYear={endYear}
+                calendarClass={calendarClass}
+              />
+            );
+          }}
+        </Media>
       </div>
-      <div className="calendar">
-        <Tooltip title="Previous Week">
-          <IconButton
-            classes={{
-              root: "next-icon",
-            }}
-            onClick={() => setStartDate(addDays(startDate, -7))}
-          >
-            <NavigateBeforeIcon />
-          </IconButton>
-        </Tooltip>
-        <CalendarWeek />
-        <Tooltip title="Next Week">
-          <IconButton
-            classes={{
-              root: "next-icon",
-            }}
-            onClick={() => setStartDate(addDays(startDate, 7))}
-          >
-            <NavigateNextIcon />
-          </IconButton>
-        </Tooltip>
-      </div>
-    </div>
+    </Fragment>
   );
 };
 
