@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/week-calendar/static/css/main.8494ed72.chunk.css",
-    "main.js": "/week-calendar/static/js/main.1a76898b.chunk.js",
-    "main.js.map": "/week-calendar/static/js/main.1a76898b.chunk.js.map",
+    "main.css": "/week-calendar/static/css/main.eb1622a3.chunk.css",
+    "main.js": "/week-calendar/static/js/main.5278dc60.chunk.js",
+    "main.js.map": "/week-calendar/static/js/main.5278dc60.chunk.js.map",
     "runtime-main.js": "/week-calendar/static/js/runtime-main.32f99eca.js",
     "runtime-main.js.map": "/week-calendar/static/js/runtime-main.32f99eca.js.map",
-    "static/js/2.f789b9ea.chunk.js": "/week-calendar/static/js/2.f789b9ea.chunk.js",
-    "static/js/2.f789b9ea.chunk.js.map": "/week-calendar/static/js/2.f789b9ea.chunk.js.map",
+    "static/js/2.d10c2e47.chunk.js": "/week-calendar/static/js/2.d10c2e47.chunk.js",
+    "static/js/2.d10c2e47.chunk.js.map": "/week-calendar/static/js/2.d10c2e47.chunk.js.map",
     "index.html": "/week-calendar/index.html",
-    "precache-manifest.4f8ca56e40ef5b719d43025a3b76cdb7.js": "/week-calendar/precache-manifest.4f8ca56e40ef5b719d43025a3b76cdb7.js",
+    "precache-manifest.26ae64f6d00207685cde940ca7f6b4af.js": "/week-calendar/precache-manifest.26ae64f6d00207685cde940ca7f6b4af.js",
     "service-worker.js": "/week-calendar/service-worker.js",
-    "static/css/main.8494ed72.chunk.css.map": "/week-calendar/static/css/main.8494ed72.chunk.css.map",
-    "static/js/2.f789b9ea.chunk.js.LICENSE.txt": "/week-calendar/static/js/2.f789b9ea.chunk.js.LICENSE.txt"
+    "static/css/main.eb1622a3.chunk.css.map": "/week-calendar/static/css/main.eb1622a3.chunk.css.map",
+    "static/js/2.d10c2e47.chunk.js.LICENSE.txt": "/week-calendar/static/js/2.d10c2e47.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.32f99eca.js",
-    "static/js/2.f789b9ea.chunk.js",
-    "static/css/main.8494ed72.chunk.css",
-    "static/js/main.1a76898b.chunk.js"
+    "static/js/2.d10c2e47.chunk.js",
+    "static/css/main.eb1622a3.chunk.css",
+    "static/js/main.5278dc60.chunk.js"
   ]
 }
