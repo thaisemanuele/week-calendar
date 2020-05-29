@@ -4,7 +4,7 @@ import "./holiday.styles.scss";
 import { Chip } from "@material-ui/core";
 import EventIcon from "@material-ui/icons/Event";
 
-const Holiday = ({ name, date, type }) => (
+const MobileHoliday = ({ name, date, type }) => (
   <div className="holiday">
     <div className="name">{name}</div>
     <Chip
@@ -17,4 +17,4 @@ const Holiday = ({ name, date, type }) => (
   </div>
 );
 
-export default Holiday;
+export default MobileHoliday;

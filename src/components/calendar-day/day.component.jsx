@@ -1,6 +1,8 @@
 import React from "react";
 import "./day.styles.scss";
 import Holiday from "../calendar-holiday/holiday.component";
+import MobileHoliday from "../holiday-card/holidayCard.component";
+import { Media } from "react-breakpoints";
 
 const Day = ({ date, day, month, dayOfTheWeek, isHoliday, holidays }) => {
   return (
@@ -17,11 +19,24 @@ const Day = ({ date, day, month, dayOfTheWeek, isHoliday, holidays }) => {
       <div className="holidays">
         {isHoliday
           ? holidays.map((holiday) => (
-              <Holiday
-                key={holiday.name}
-                name={holiday.name}
-                type={holiday.type}
-              />
+              <Media key={holiday.name}>
+                {({ breakpoints, currentBreakpoint }) => {
+                  return breakpoints[currentBreakpoint] >
+                    breakpoints.mobileLandscape ? (
+                    <Holiday
+                      key={holiday.name}
+                      name={holiday.name}
+                      type={holiday.type}
+                    />
+                  ) : (
+                    <MobileHoliday
+                      key={holiday.name}
+                      name={holiday.name}
+                      type={holiday.type}
+                    />
+                  );
+                }}
+              </Media>
             ))
           : null}
       </div>
