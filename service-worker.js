@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/thaisemanuele/week-calendar/precache-manifest.47bf9b680b396c9b865cab0ed0cb29f3.js"
+  "/thaisemanuele/week-calendar/precache-manifest.ddaa5dde0c1fbaebc215c006fef571bc.js"
 );
 
 self.addEventListener('message', (event) => {
