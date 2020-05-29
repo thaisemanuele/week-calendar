@@ -1,3 +1,10 @@
+This project demo is available at [https://thaisemanuele.github.io/week-calendar/]
+
+For running locally:
+
+add API_KEY to config.js file
+access the project in http://localhost:3000/week-calendar
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <HomePage path="/" />
+        <HomePage path="/week-calendar" />
       </Router>
     </div>
   );
