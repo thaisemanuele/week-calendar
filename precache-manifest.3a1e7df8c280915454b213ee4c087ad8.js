@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "06c8a0e650c9f5c6e382fe4db59261b2",
+    "revision": "40ab4621aeacab74610153aaecf795ed",
     "url": "/thaisemanuele/week-calendar/index.html"
   },
   {
-    "revision": "1421db74c9fa13476e29",
+    "revision": "3a4e3b6a8f9ca1555ed3",
     "url": "/thaisemanuele/week-calendar/static/css/main.8494ed72.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/thaisemanuele/week-calendar/static/js/2.f789b9ea.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1421db74c9fa13476e29",
-    "url": "/thaisemanuele/week-calendar/static/js/main.7afae07d.chunk.js"
+    "revision": "3a4e3b6a8f9ca1555ed3",
+    "url": "/thaisemanuele/week-calendar/static/js/main.5e81cd27.chunk.js"
   },
   {
     "revision": "824692fe4eaca9f1ea0c",
