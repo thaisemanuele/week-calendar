@@ -7,6 +7,7 @@ import ConfigurationButton from "../configuration-button/configurationButton.com
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
+    backgroundColor: "darkslateblue",
   },
   title: {
     flexGrow: 1,
@@ -17,7 +18,7 @@ const CalendarAppBar = () => {
   const classes = useStyles();
   return (
     <AppBar position="static">
-      <Toolbar>
+      <Toolbar className={classes.root}>
         <ConfigurationButton />
         <Typography variant="h6" className={classes.title}>
           My Calendar

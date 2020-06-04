@@ -10,58 +10,54 @@ import Calendar from "../components/calendar/calendar.component";
 
 afterEach(cleanup);
 
-test("should call setStartDate", () => {
+test("should send action with May 26 2020", () => {
   const initialState = {
     holidays: {
       dates: [],
     },
     days: {
       dates: [],
+      firstDayOfTheWeek: "2020-06-02",
     },
   };
   const store = mockStore(initialState);
-  const setStartDate = jest.fn();
 
   const { getByTitle } = render(
     <Provider store={store}>
-      <Calendar
-        startYear={"2020"}
-        startDate={"2020-06-02"}
-        setStartDate={setStartDate}
-      />
+      <Calendar startYear={"2020"} />
     </Provider>
   );
   const changeButton = getByTitle("Previous Week");
   changeButton.firstChild.click();
 
-  expect(setStartDate).toHaveBeenCalledTimes(1);
-  expect(setStartDate).toHaveBeenCalledWith("2020-05-26");
+  const actions = store.getActions();
+  expect(actions).toEqual([
+    { type: "SET_FIRST_DAY_OF_THE_WEEK", payload: "2020-05-26" },
+  ]);
 });
 
-test("should call setStartDate", () => {
+test("should send action with Jun 09 2020", () => {
   const initialState = {
     holidays: {
       dates: [],
     },
     days: {
       dates: [],
+      firstDayOfTheWeek: "2020-06-02",
     },
   };
   const store = mockStore(initialState);
-  const setStartDate = jest.fn();
 
   const { getByTitle } = render(
     <Provider store={store}>
-      <Calendar
-        startYear={"2020"}
-        startDate={"2020-06-02"}
-        setStartDate={setStartDate}
-      />
+      <Calendar startYear={"2020"} />
     </Provider>
   );
   const changeButton = getByTitle("Next Week");
   changeButton.firstChild.click();
 
-  expect(setStartDate).toHaveBeenCalledTimes(1);
-  expect(setStartDate).toHaveBeenCalledWith("2020-06-09");
+  const actions = store.getActions();
+  expect(actions).toEqual([
+    { type: "SET_FIRST_DAY_OF_THE_WEEK", payload: "2020-06-09" },
+  ]);
 });

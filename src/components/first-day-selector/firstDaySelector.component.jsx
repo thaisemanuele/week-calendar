@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import { connect } from "react-redux";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
@@ -8,10 +8,23 @@ import {
   dayOfTheWeekAsString,
   dayOfTheWeekAsNumber,
 } from "../../utils/days.utils";
+import { ListItem, ListItemText } from "@material-ui/core";
 
-export default function FirstDaySelector(props) {
+import { setFirstDayOfTheWeek } from "../../redux/store/actions/days";
+
+const options = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+const FirstDaySelector = ({ firstDay, setFirstDay }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const currentDay = dayOfTheWeekAsString(props.firstDay);
+  const currentDay = dayOfTheWeekAsString(firstDay);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -19,12 +32,10 @@ export default function FirstDaySelector(props) {
 
   const handleChange = (value) => {
     handleClose();
-    const daysToAdd = value - dayOfTheWeekAsNumber(props.firstDay); // (0 ... 6) - currentDayOfTheWeek
-    console.log(daysToAdd);
+    const daysToAdd = value - dayOfTheWeekAsNumber(firstDay); // (0 ... 6) - currentDayOfTheWeek
     if (Math.abs(daysToAdd) < 7) {
-      const newFirstDay = retrieveEndDate(props.firstDay, daysToAdd);
-      console.log(newFirstDay);
-      props.onFirstDayChanged(newFirstDay);
+      const newFirstDay = retrieveEndDate(firstDay, daysToAdd);
+      setFirstDay(newFirstDay);
     }
   };
 
@@ -34,28 +45,44 @@ export default function FirstDaySelector(props) {
 
   return (
     <div>
-      <Button
-        aria-controls="simple-menu"
+      <ListItem
+        button
+        divider
         aria-haspopup="true"
+        aria-controls="days-menu"
+        aria-label="first-day"
         onClick={handleClick}
+        role="listitem"
       >
-        First Day: {currentDay}
-      </Button>
+        <ListItemText primary="First Day" secondary={currentDay} />
+      </ListItem>
       <Menu
-        id="simple-menu"
+        id="days-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={() => handleChange(1)}>Monday</MenuItem>
-        <MenuItem onClick={() => handleChange(2)}>Tuesday</MenuItem>
-        <MenuItem onClick={() => handleChange(3)}>Wednesday</MenuItem>
-        <MenuItem onClick={() => handleChange(4)}>Thursday</MenuItem>
-        <MenuItem onClick={() => handleChange(5)}>Friday</MenuItem>
-        <MenuItem onClick={() => handleChange(6)}>Saturday</MenuItem>
-        <MenuItem onClick={() => handleChange(0)}>Sunday</MenuItem>
+        {options.map((option, index) => (
+          <MenuItem key={option} onClick={() => handleChange(index)}>
+            {option}
+          </MenuItem>
+        ))}
       </Menu>
     </div>
   );
-}
+};
+
+const mapStateToProps = (state) => {
+  return {
+    firstDay: state.days.firstDayOfTheWeek,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFirstDay: (firstDay) => dispatch(setFirstDayOfTheWeek(firstDay)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FirstDaySelector);

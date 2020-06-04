@@ -1,7 +1,9 @@
 import * as actionTypes from "../store/actions/actionTypes";
+import { today } from "../../utils/days.utils";
 
 const INITIAL_STATE = {
   dates: [],
+  firstDayOfTheWeek: today(),
 };
 
 const daysReducer = (state = INITIAL_STATE, action) => {
@@ -10,6 +12,11 @@ const daysReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         dates: action.payload,
+      };
+    case actionTypes.SET_FIRST_DAY_OF_THE_WEEK:
+      return {
+        ...state,
+        firstDayOfTheWeek: action.payload,
       };
 
     default:

@@ -7,7 +7,6 @@ import { fetchHolidays } from "../../redux/store/actions/holidays";
 import { setDays } from "../../redux/store/actions/days";
 
 import {
-  today,
   createDays,
   retrieveStartYear,
   retrieveEndYear,
@@ -19,8 +18,7 @@ import {
 import Calendar from "../../components/calendar/calendar.component";
 import CalendarAppBar from "../../components/calendar-appbar/calendarAppbar.component";
 
-const HomePage = (props) => {
-  const [startDate, setStartDate] = useState(today());
+const HomePage = ({ setDays, holidays, getHolidays, startDate }) => {
   const [daysToDisplay] = useState(7);
 
   const [startYear, setStartYear] = useState(currentYear());
@@ -28,10 +26,8 @@ const HomePage = (props) => {
     retrieveEndYear(startDate, daysToDisplay)
   );
 
-  const holidaysStartDate = props.holidays.startDate;
-  const holidaysEndDate = props.holidays.endDate;
-
-  const { getHolidays, setDays } = props;
+  const holidaysStartDate = holidays.startDate;
+  const holidaysEndDate = holidays.endDate;
 
   useEffect(() => {
     setDays(createDays(startDate, daysToDisplay));
@@ -43,14 +39,14 @@ const HomePage = (props) => {
         addDays(holidaysStartDate, -28),
         holidaysStartDate,
         holidaysStartDate,
-        props.holidays.dates
+        holidays.dates
       );
     } else if (retrieveEndDate(startDate, daysToDisplay) > holidaysEndDate) {
       getHolidays(
         addDays(holidaysEndDate, 1),
         addDays(holidaysEndDate, 28),
         holidaysStartDate,
-        props.holidays.dates
+        holidays.dates
       );
     }
   }, [
@@ -75,8 +71,6 @@ const HomePage = (props) => {
             return (
               <Calendar
                 startYear={startYear}
-                startDate={startDate}
-                setStartDate={setStartDate}
                 endYear={endYear}
                 calendarClass={calendarClass}
               />
@@ -92,6 +86,7 @@ const mapStateToProps = (state) => {
   return {
     holidays: state.holidays,
     days: state.days,
+    startDate: state.days.firstDayOfTheWeek,
   };
 };
 

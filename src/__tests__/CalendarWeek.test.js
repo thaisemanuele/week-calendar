@@ -2,9 +2,10 @@ import React from "react";
 import { render } from "@testing-library/react";
 
 import configureStore from "redux-mock-store";
+import { Provider } from "react-redux";
+
 const middlewares = [];
 const mockStore = configureStore(middlewares);
-import { Provider } from "react-redux";
 
 import CalendarWeek from "../components/calendar-week/calendarWeek.component";
 
