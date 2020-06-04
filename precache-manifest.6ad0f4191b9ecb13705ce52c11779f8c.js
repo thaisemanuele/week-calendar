@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dd017fc0777c981be3e441f79134e466",
+    "revision": "c87184d9b56236ecdf46d6a9f8502615",
     "url": "/week-calendar/index.html"
   },
   {
-    "revision": "3b4ebbc4356309bdf582",
+    "revision": "f9486b407ccb798bcae5",
     "url": "/week-calendar/static/css/main.eb1622a3.chunk.css"
   },
   {
-    "revision": "75d7c6206273f468e89c",
-    "url": "/week-calendar/static/js/2.d10c2e47.chunk.js"
+    "revision": "bd62fc44a8207e6a57a5",
+    "url": "/week-calendar/static/js/2.e653dd49.chunk.js"
   },
   {
     "revision": "eac4cf64bf573541fd6dba29c78393a0",
-    "url": "/week-calendar/static/js/2.d10c2e47.chunk.js.LICENSE.txt"
+    "url": "/week-calendar/static/js/2.e653dd49.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3b4ebbc4356309bdf582",
-    "url": "/week-calendar/static/js/main.8551308f.chunk.js"
+    "revision": "f9486b407ccb798bcae5",
+    "url": "/week-calendar/static/js/main.6f90fc79.chunk.js"
   },
   {
     "revision": "7fa42fbf629bb840e6e0",
