@@ -36,7 +36,6 @@ const Calendar = ({
             <NavigateBeforeIcon />
           </IconButton>
         </Tooltip>
-        <CalendarWeek />
         <Tooltip title="Next Week">
           <IconButton
             classes={{
@@ -47,6 +46,7 @@ const Calendar = ({
             <NavigateNextIcon />
           </IconButton>
         </Tooltip>
+        <CalendarWeek />
       </div>
     </Fragment>
   );

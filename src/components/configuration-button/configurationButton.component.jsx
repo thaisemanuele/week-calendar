@@ -7,7 +7,7 @@ import ConfigurationDialog from "../configuration-dialog/configurationDialog.com
 const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
-    backgroundColor: "#276fa0",
+    backgroundColor: "#4e4488",
   },
 }));
 

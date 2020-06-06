@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "darkslateblue",
   },
   title: {
-    flexGrow: 1,
+    flexGrow: 0,
   },
 }));
 
