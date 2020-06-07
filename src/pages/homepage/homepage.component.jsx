@@ -1,7 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { connect } from "react-redux";
 import "./homepage.styles.scss";
-import { Media } from "react-breakpoints";
 
 import { fetchHolidays } from "../../redux/store/actions/holidays";
 import { setDays } from "../../redux/store/actions/days";
@@ -62,21 +61,11 @@ const HomePage = ({ setDays, holidays, getHolidays, startDate }) => {
     <Fragment>
       <CalendarAppBar />
       <div className="homepage">
-        <Media>
-          {({ breakpoints, currentBreakpoint }) => {
-            const calendarClass =
-              breakpoints[currentBreakpoint] > breakpoints.mobileLandscape
-                ? "calendar"
-                : "mobile-calendar";
-            return (
-              <Calendar
-                startYear={startYear}
-                endYear={endYear}
-                calendarClass={calendarClass}
-              />
-            );
-          }}
-        </Media>
+        <Calendar
+          startYear={startYear}
+          endYear={endYear}
+          calendarClass="calendar"
+        />
       </div>
     </Fragment>
   );

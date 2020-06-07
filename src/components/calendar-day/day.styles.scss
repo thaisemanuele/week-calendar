@@ -1,47 +1,92 @@
 .day {
-  display: flex;
-  flex-direction: column;
-  height: 215px;
-  align-items: center;
-  position: relative;
+  display: grid;
+  max-height: 220px;
+  grid-template-rows: 1fr 1fr 2fr;
+  grid-template-columns: 1fr 3fr;
+  border: 1px solid #ad9f9f;
+  border-radius: 3%;
   background-color: #f9f8f7;
 
-  .date-wrapper {
-    width: 100%;
-  }
+  margin-bottom: 10px;
 
   .date {
     width: 100%;
-    display: flex;
-    flex-direction: row;
+    grid-row: 1/3;
     justify-content: space-between;
     background-color: #daecf7;
     color: #505558;
     font-size: large;
+  }
+  .month,
+  .number {
+    grid-column-start: 1;
+  }
 
-    .month,
-    .number {
-      padding: 10px;
-    }
+  .number {
+    font-size: x-large;
+    font-weight: 400;
+  }
+
+  .month {
+    font-size: large;
+    font-weight: 200;
   }
 
   .day-week {
-    width: 100%;
-    color: steelblue;
-    background-color: #e0dbe4;
-    border-top: #f9f8f7;
+    display: flex;
+    background-color: steelblue;
+    color: floralwhite;
+    grid-column-start: 1;
+    grid-row: 1/3;
+    height: 85%;
+    align-self: flex-start;
+    align-items: flex-end;
+    justify-content: center;
   }
 
   .day-week.holiday {
-    width: 100%;
-    color: #e23d3d;
-    background-color: #e0dbe4;
-    height: 10px;
+    color: floralwhite;
+    background-color: #e23d3d;
   }
 
   .holidays {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    grid-row: 1/5;
+    grid-column: 2/4;
+    max-height: 75px;
+    overflow-y: scroll;
+  }
+}
+
+/** Mobile Landscape screen sizes*/
+@media only screen and (min-width: 480px) {
+  .day {
+    grid-template-rows: 1fr 1fr 5fr;
+    grid-template-columns: 1fr 1fr 3fr;
+
+    .day-week {
+      width: 36px;
+      display: flex;
+      background-color: steelblue;
+      color: floralwhite;
+      grid-column-start: 2;
+      grid-row: 1/3;
+      height: 85%;
+      align-self: flex-start;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .month,
+    .number {
+      grid-column-start: 3;
+    }
+
+    .holidays {
+      display: block;
+      flex-direction: column;
+      grid-row: 3/7;
+      grid-column: 1/4;
+      max-height: 135px;
+    }
   }
 }
