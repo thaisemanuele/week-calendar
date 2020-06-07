@@ -1,13 +1,11 @@
 .holiday {
   width: 100%;
   display: flex;
-  flex-direction: column;
   height: 144px;
   align-items: center;
   justify-content: space-between;
   position: relative;
   background-color: #ece4e2;
-  padding-bottom: 10px;
 
   .name {
     padding: 10px;

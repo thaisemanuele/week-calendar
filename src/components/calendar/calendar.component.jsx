@@ -10,7 +10,7 @@ import { addDays } from "../../utils/days.utils";
 
 import { setFirstDayOfTheWeek } from "../../redux/store/actions/days";
 
-import "./mobileCalendar.styles.scss";
+import "./calendar.styles.scss";
 
 const Calendar = ({
   startYear,

@@ -6,7 +6,6 @@ import { store } from "./redux/store/store";
 
 import "./index.css";
 import App from "./App";
-import ReactBreakpoints from "react-breakpoints";
 import * as serviceWorker from "./serviceWorker";
 
 const breakpoints = {
@@ -22,9 +21,7 @@ const breakpoints = {
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ReactBreakpoints breakpoints={breakpoints}>
-        <App />
-      </ReactBreakpoints>
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
